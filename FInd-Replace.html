@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>RegEx find and replace project</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+  <form>
+    <div>
+        <label for="original">Input:</label>
+        <input type="text" id="original">
+    </div>
+
+    <div>
+      <label for="find">Find:</label>
+      <input type="text" id="find">
+    </div>
+      
+    <div>
+      <label for="replace">Replace:</label>
+      <input type="text" id="replace">
+    </div>
+
+    <button id="replaceBtn">Replace!</button>
+  </form>
+  <h3>New text:</h3>
+  <p></p>
+  
+  <script>
+    document.getElementById('replaceBtn').addEventListener('click', (e)=> {
+      //need to grab 4 things so 4 variables
+      let originalText=document.getElementById('original').value;//reading the entered text
+      let modifiedText=document.querySelectorAll('p')[0]//will output the final result  
+
+
+      let findText=document.getElementById('find').value;//word(s) that have to replaced
+      let replaceText=document.getElementById('replace').value;//word that has to be replaced with
+      
+      
+      let findWithdModifier= new RegExp(findText, 'i');   //This constructor was made in order to prevent the website  from being case sensitive almost same as i-modifier, i modifier simply won't work
+      let newText=originalText.replace(findWithdModifier, replaceText);//using the replace function on the entered text 
+      modifiedText.innerHTML=newText;
+
+      e.preventDefault();// since it is a form so default action is to submit it and hence reload thus preventing printing the replaced text
+
+    })
+       
+  
+  </script>
+</body>
+</html>
